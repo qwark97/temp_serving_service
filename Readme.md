@@ -1,0 +1,1 @@
+Microservice which fetches temeprature connected data from DB and serve it via WebSockets. After the connection is established, microservice will be updating client as long as needed.
