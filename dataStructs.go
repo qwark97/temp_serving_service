@@ -1,6 +1,5 @@
 package main
 
-
 type dbConfig struct {
 	Host     string `json:"host"`
 	Port     int32  `json:"port"`
@@ -11,4 +10,9 @@ type dbConfig struct {
 
 type SQLSelectStatements struct {
 	Statements map[string]string
+}
+
+type TemperatureResponse struct {
+	Temp float32 `json:"temp"`
+	Unit string  `json:"unit"`
 }
