@@ -22,3 +22,15 @@ func getCurrentTemp() (float32, string, error) {
 		return 0, "unknown", err
 	}
 }
+
+func getAverageDayTemp() (float32, string) {
+	return 2.2, "celsius"
+}
+
+func getAverage7DaysTemp() (float32, string) {
+	return 3.3, "celsius"
+}
+
+func getAverage30DaysTemp() (float32, string) {
+	return 4.4, "celsius"
+}
