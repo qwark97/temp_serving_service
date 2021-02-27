@@ -3,7 +3,7 @@ package main
 var selectStatements SQLSelectStatements
 
 func (statements *SQLSelectStatements) loadStatements() {
-	statements.Statements["currentTemp"] = ""
+	statements.Statements["currentTemp"] = "SELECT temperature, unit FROM temperatures ORDER BY temp_id DESC LIMIT 1"
 	statements.Statements["averageDay"] = ""
 	statements.Statements["average7Days"] = ""
 	statements.Statements["average30Days"] = ""
