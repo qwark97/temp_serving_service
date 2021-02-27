@@ -5,15 +5,22 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
+
+	_ "github.com/lib/pq"
 )
 
 var (
-	dbConfigPath      *string
+	dbConfigPath *string
+	port         *int
+	db           *sql.DB
+	err          error
 )
 
 func main() {
 	dbConfigPath = flag.String("dbConfigPath", ".db_config.json", "Path to JSON DB config")
+	port = flag.Int("port", 8080, "Port on which miscroservice will run")
 	flag.Parse()
 
 	// load all configs
@@ -27,7 +34,7 @@ func main() {
 		loadedDBConfig.Dbname)
 
 	// connect to DB
-	db, err := sql.Open("postgres", psqlInfo)
+	db, err = sql.Open("postgres", psqlInfo)
 	errHandle("Could not open DB connection", err)
 	defer func() {
 		err = db.Close()
@@ -39,6 +46,13 @@ func main() {
 	// load DB select statements
 	selectStatements.Statements = make(map[string]string)
 	selectStatements.loadStatements()
+
+	// setup server routes
+	setupRoutes()
+
+	// start server
+	log.Printf("Start server at :%d\n", *port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), nil))
 }
 
 func errHandle(msg string, err error) {
