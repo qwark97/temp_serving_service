@@ -51,6 +51,6 @@ func currentTemp(w http.ResponseWriter, r *http.Request) {
 			ws.Close()
 			return
 		}
-		time.Sleep(time.Second * 1)
+		time.Sleep(time.Second * 30)
 	}
 }
