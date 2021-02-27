@@ -32,6 +32,7 @@ func currentTemp(w http.ResponseWriter, r *http.Request) {
 	log.Println("Client has connected")
 	for {
 		log.Println("Sending current temp to client")
+		// todo lack of specifying from the what source temperature measure should be fetchetched (sensor1, sensor2, etc.)
 		temp, unit, err := getCurrentTemp()
 		if err != nil {
 			if err = ws.Close(); err != nil {
