@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// todo lack of specifying from the what source temperature measure should be fetchetched (sensor1, sensor2, etc.)
 func getCurrentTemp() (float32, string, error) {
 	sqlStatement := selectStatements.getStatement("currentTemp")
 	var temp float32
