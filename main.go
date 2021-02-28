@@ -20,7 +20,7 @@ var (
 
 func main() {
 	dbConfigPath = flag.String("dbConfigPath", ".db_config.json", "Path to JSON DB config")
-	port = flag.Int("port", 8080, "Port on which miscroservice will run")
+	port = flag.Int("port", 8080, "Port on which microservice will run")
 	flag.Parse()
 
 	// load all configs
